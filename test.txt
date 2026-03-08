@@ -1,0 +1,1019 @@
+shop with theme toggle · HTML
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P The Barber | Premium Grooming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f5f5f5;
+            --color-surface: #e8e4dc;
+            --color-card: #ffffff;
+            --color-text: #0d0d0d;
+            --color-text-secondary: #1a1a1a;
+            --color-text-muted: #2a2a2a;
+            --color-border: rgba(13, 13, 13, 0.1);
+            --color-shadow: rgba(0, 0, 0, 0.08);
+            --color-gold: #c9a961;
+            --color-accent: #d4a574;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Poppins', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0d0d0d;
+            --color-surface: #1a1a1a;
+            --color-card: #1f1f1f;
+            --color-text: #f5f5f5;
+            --color-text-secondary: #e8e4dc;
+            --color-text-muted: #a8a8a8;
+            --color-border: rgba(245, 245, 245, 0.1);
+            --color-shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Subtle texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 5%;
+            background: var(--color-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 1.2rem 5%;
+            box-shadow: 0 2px 20px var(--color-shadow);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            transform: rotate(180deg);
+        }
+
+        .nav-cta {
+            padding: 0.8rem 2rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-gold);
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            background: var(--color-bg);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        .hero-text .accent {
+            color: var(--color-gold);
+            font-style: italic;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-image {
+            aspect-ratio: 4/5;
+            background: var(--color-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            opacity: 0.15;
+            border: 1px solid var(--color-border);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1.1rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            border: 1px solid;
+        }
+
+        .btn-primary {
+            background: var(--color-text);
+            color: var(--color-bg);
+            border-color: var(--color-text);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-text);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border-color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--color-gold);
+            margin: 6rem auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5%;
+            background: var(--color-surface);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--color-card);
+            padding: 3rem 2.5rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--color-shadow);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .service-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .service-price {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-gold);
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 5%;
+            background: var(--color-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 4rem auto 0;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 1px solid var(--color-gold);
+            border-radius: 50%;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 8rem 5%;
+            background: var(--color-surface);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 4rem auto 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px var(--color-shadow);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        /* Instagram Section */
+        .instagram {
+            padding: 8rem 5%;
+            background: var(--color-bg);
+            text-align: center;
+        }
+
+        .instagram h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .instagram-handle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--color-gold);
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--color-surface);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 3rem;
+        }
+
+        .info-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            background: var(--color-card);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            font-weight: 300;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-image {
+                order: -1;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.2rem 4%;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero,
+            .services,
+            .features,
+            .gallery,
+            .instagram,
+            .contact {
+                padding: 4rem 4%;
+            }
+            .hero-cta {
+                flex-direction: column;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-content">
+            <div class="logo">P The Barber</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <a href="#contact" class="nav-cta">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Precision.<br>
+                    <span class="accent">Craftsmanship.</span><br>
+                    Excellence.
+                </h1>
+                <p>
+                    Where traditional barbering meets refined technique. Every cut executed with meticulous attention to detail and uncompromising quality.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Schedule Appointment</a>
+                    <a href="https://instagram.com/p__thebarber" target="_blank" class="btn btn-secondary">View Work</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <span>✂️</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <p class="section-tag">Services</p>
+            <h2 class="section-title">Our Offerings</h2>
+            <p class="section-subtitle">Premium grooming tailored to perfection</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Signature Cut</h3>
+                    <p class="service-price">$45</p>
+                </div>
+                <p class="service-desc">
+                    Complete haircut service with consultation, precision cutting, and professional styling.
+                </p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Classic Shave</h3>
+                    <p class="service-price">$40</p>
+                </div>
+                <p class="service-desc">
+                    Traditional straight razor shave with hot towel preparation and premium products.
+                </p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Cut & Beard</h3>
+                    <p class="service-price">$65</p>
+                </div>
+                <p class="service-desc">
+                    Comprehensive package combining haircut with beard sculpting and conditioning.
+                </p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Precision Fade</h3>
+                    <p class="service-price">$50</p>
+                </div>
+                <p class="service-desc">
+                    Expert fade work executed with technical precision and tailored to your style.
+                </p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Executive Service</h3>
+                    <p class="service-price">$100</p>
+                </div>
+                <p class="service-desc">
+                    Complete grooming experience. Haircut, shave, facial treatment, and consultation.
+                </p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3 class="service-name">Edge Detail</h3>
+                    <p class="service-price">$25</p>
+                </div>
+                <p class="service-desc">
+                    Quick precision edge-up to maintain your look between full services.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header reveal">
+            <p class="section-tag">Why Choose Us</p>
+            <h2 class="section-title">Excellence in Detail</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature reveal">
+                <div class="feature-icon">✂️</div>
+                <h3 class="feature-title">Expert Technique</h3>
+                <p class="feature-text">Years of experience delivering consistent, quality results</p>
+            </div>
+            <div class="feature reveal">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">Premium Tools</h3>
+                <p class="feature-text">Professional-grade equipment for superior precision</p>
+            </div>
+            <div class="feature reveal">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Attention to Detail</h3>
+                <p class="feature-text">Meticulous care in every aspect of service</p>
+            </div>
+            <div class="feature reveal">
+                <div class="feature-icon">⏱️</div>
+                <h3 class="feature-title">Time Efficient</h3>
+                <p class="feature-text">Respect for your schedule without compromising quality</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header reveal">
+            <p class="section-tag">Portfolio</p>
+            <h2 class="section-title">Recent Work</h2>
+            <p class="section-subtitle">See the quality for yourself</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">✂️</div>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">💈</div>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">🪒</div>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">✂️</div>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">💈</div>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gallery-placeholder">🪒</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="instagram">
+        <div class="reveal">
+            <h2>Follow the Journey</h2>
+            <p class="instagram-handle">@p__thebarber</p>
+            <a href="https://instagram.com/p__thebarber" target="_blank" class="btn btn-primary">View Instagram</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-info reveal">
+                <h2>Visit Us</h2>
+                <div class="info-group">
+                    <p class="info-label">Hours</p>
+                    <p class="info-value">
+                        Monday - Friday: 10:00 AM - 7:00 PM<br>
+                        Saturday: 9:00 AM - 6:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+                <div class="info-group">
+                    <p class="info-label">Location</p>
+                    <p class="info-value">
+                        [Your Address]<br>
+                        [City, State ZIP]
+                    </p>
+                </div>
+                <div class="info-group">
+                    <p class="info-label">Contact</p>
+                    <p class="info-value">
+                        Phone: [Your Phone]<br>
+                        Email: [Your Email]
+                    </p>
+                </div>
+            </div>
+            <div class="contact-form reveal">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>P The Barber</h3>
+                <p>
+                    Premium grooming services delivered with precision and care. Experience the difference that quality craftsmanship makes.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://instagram.com/p__thebarber">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Haircuts</a></li>
+                    <li><a href="#services">Shaves</a></li>
+                    <li><a href="#services">Beard Grooming</a></li>
+                    <li><a href="#contact">Book Now</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 P The Barber. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function revealOnScroll() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.85) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Stagger animations
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.feature').forEach((feature, index) => {
+            feature.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.08}s`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+export default function Footer() {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  return (
+    <footer className="pt-16 pb-8 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d] border-t border-black/10 dark:border-white/10">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-16 mb-12">
+        {/* Brand */}
+        <div>
+          <h3 className="font-serif text-[1.6rem] text-[#0d0d0d] dark:text-[#f5f5f5] mb-6">
+            P The Barber
+          </h3>
+          <p className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] leading-loose">
+            Premium grooming services delivered with precision and care. Experience the difference
+            that quality craftsmanship makes.
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-sm font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] tracking-wide mb-6 uppercase">
+            Quick Links
+          </h4>
+          <ul className="space-y-3">
+            {[
+              { label: 'Services', id: 'services' },
+              { label: 'Gallery', id: 'gallery' },
+              { label: 'Contact', id: 'contact' },
+            ].map(({ label, id }) => (
+              <li key={id}>
+                <button
+                  onClick={() => scrollTo(id)}
+                  className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer"
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+            <li>
+              <a
+                href="https://instagram.com/p__thebarber"
+                target="_blank"
+                rel="noreferrer"
+                className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] hover:text-gold transition-colors duration-300"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Services */}
+        <div>
+          <h4 className="text-sm font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] tracking-wide mb-6 uppercase">
+            Services
+          </h4>
+          <ul className="space-y-3">
+            {['Haircuts', 'Shaves', 'Beard Grooming'].map((s) => (
+              <li key={s}>
+                <button
+                  onClick={() => scrollTo('services')}
+                  className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer"
+                >
+                  {s}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => scrollTo('contact')}
+                className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer"
+              >
+                Book Now
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="text-center pt-8 border-t border-black/10 dark:border-white/10 text-sm font-light text-[#2a2a2a] dark:text-[#a8a8a8]">
+        <p>© 2024 P The Barber. All rights reserved.</p>
+      </div>
+    </footer>
+  )
+}
