@@ -8,25 +8,25 @@ export default function Footer() {
     <footer className="pt-16 pb-8 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d] border-t border-black/10 dark:border-white/10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-16 mb-12">
         {/* Brand */}
-        <div>
+        <div className="text-center md:text-left">
           <h3 className="font-serif text-[1.6rem] text-[#0d0d0d] dark:text-[#f5f5f5] mb-6">
             P The Barber
           </h3>
           <p className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] leading-loose">
-            Premium grooming services delivered with precision and care. Experience the difference
-            that quality craftsmanship makes.
+            Quality grooming with precision and attention to detail. <br/>
+            Good service and a clean cut every time.
           </p>
         </div>
 
         {/* Quick Links */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-sm font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] tracking-wide mb-6 uppercase">
             Quick Links
           </h4>
           <ul className="space-y-3">
             {[
-              { label: 'Services', id: 'services' },
               { label: 'Gallery', id: 'gallery' },
+              { label: 'Reviews', id: 'reviews' },
               { label: 'Contact', id: 'contact' },
             ].map(({ label, id }) => (
               <li key={id}>
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
 
         {/* Services */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-sm font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] tracking-wide mb-6 uppercase">
             Services
           </h4>
@@ -80,7 +80,16 @@ export default function Footer() {
       </div>
 
       <div className="text-center pt-8 border-t border-black/10 dark:border-white/10 text-sm font-light text-[#2a2a2a] dark:text-[#a8a8a8]">
-        <p>© 2024 P The Barber. All rights reserved.</p>
+        <p>© 2026 P The Barber | Built by{' '}
+          <a
+            href="https://thangknguyen.com"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-gold transition-colors duration-300"
+          >
+            Thang Nguyen
+          </a>
+        </p>
       </div>
     </footer>
   )

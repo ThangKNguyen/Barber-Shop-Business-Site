@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import Features from './components/Features'
 import Gallery from './components/Gallery'
+import Reviews from './components/Reviews'
 import Instagram from './components/Instagram'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -33,13 +34,16 @@ export default function App() {
   return (
     <div className="bg-[#f5f5f5] dark:bg-[#0d0d0d] text-[#0d0d0d] dark:text-[#f5f5f5] font-sans min-h-screen">
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Hero />
-      <div className="w-[60px] h-px bg-gold mx-auto my-24" />
-      <Services />
-      <Features />
-      <Gallery />
-      <Instagram />
-      <Contact />
+      <main>
+        <Hero />
+        <div className="w-[60px] h-px bg-gold mx-auto my-24" aria-hidden="true" />
+        <Services />
+        <Features />
+        <Gallery />
+        <Reviews />
+        <Instagram />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Sun, Moon } from 'lucide-react'
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
@@ -16,7 +17,7 @@ export default function Navbar({ theme, toggleTheme }) {
     setMenuOpen(false)
   }
 
-  const navItems = ['services', 'gallery', 'contact']
+  const navItems = ['services', 'gallery', 'reviews', 'contact']
 
   return (
     <nav
@@ -50,16 +51,21 @@ export default function Navbar({ theme, toggleTheme }) {
             aria-label="Toggle theme"
             className="w-10 h-10 rounded-full bg-[#e8e4dc] dark:bg-[#1a1a1a] border border-black/10 dark:border-white/10 flex items-center justify-center text-xl cursor-pointer hover:bg-gold hover:border-gold hover:rotate-180 transition-all duration-300"
           >
-            {theme === 'dark' ? '☀️' : '🌙'}
+            {theme === 'dark'
+              ? <Sun size={18} strokeWidth={1.5} />
+              : <Moon size={18} strokeWidth={1.5} />
+            }
           </button>
 
           {/* Book Now — hidden on mobile */}
-          <button
-            onClick={() => scrollTo('contact')}
-            className="hidden md:block px-8 py-3 bg-[#0d0d0d] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#0d0d0d] text-sm font-medium tracking-widest hover:bg-gold hover:text-[#0d0d0d] dark:hover:bg-gold transition-all duration-300"
+          <a
+            href="https://pthebarber.square.site/"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:block px-8 py-3 bg-[#0d0d0d] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#0d0d0d] text-sm font-medium tracking-widest hover:bg-gold hover:text-[#0d0d0d] dark:hover:bg-gold dark:hover:text-[#0d0d0d] transition-all duration-300"
           >
             BOOK NOW
-          </button>
+          </a>
 
           {/* Hamburger */}
           <button
@@ -92,12 +98,14 @@ export default function Navbar({ theme, toggleTheme }) {
             </li>
           ))}
           <li>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="mt-2 w-full py-3 bg-[#0d0d0d] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#0d0d0d] text-sm font-medium tracking-widest hover:bg-gold hover:text-[#0d0d0d] transition-all duration-300"
+            <a
+              href="https://pthebarber.square.site/"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 block w-full py-3 text-center bg-[#0d0d0d] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#0d0d0d] text-sm font-medium tracking-widest hover:bg-gold hover:text-[#0d0d0d] dark:hover:bg-gold dark:hover:text-[#0d0d0d] transition-all duration-300"
             >
               BOOK NOW
-            </button>
+            </a>
           </li>
         </ul>
       </div>
