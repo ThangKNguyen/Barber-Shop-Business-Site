@@ -38,7 +38,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="border-l-2 border-gold pl-6 space-y-3 text-left">
+          <div className="border-t-2 md:border-t-0 md:border-l-2 border-gold pt-4 md:pt-0 md:pl-6 space-y-3 text-center md:text-left">
             <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">Important Information</p>
             {[
               'Please message us for the address prior to your appointment.',
