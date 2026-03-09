@@ -26,9 +26,12 @@ export default function Navbar({ theme, toggleTheme }) {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-[5%] flex justify-between items-center">
-        <div className="font-serif text-[1.6rem] font-semibold tracking-wide">
+        <button
+          onClick={() => scrollTo('hero')}
+          className="font-serif text-[1.6rem] font-semibold tracking-wide bg-transparent border-none cursor-pointer text-[#0d0d0d] dark:text-[#f5f5f5]"
+        >
           P The Barber
-        </div>
+        </button>
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-12 list-none">

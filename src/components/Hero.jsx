@@ -7,7 +7,7 @@ export default function Hero() {
   }
 
   return (
-    <section aria-label="Hero" className="min-h-screen flex items-center pt-32 pb-16 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d]">
+    <section id="hero" aria-label="Hero" className="min-h-screen flex items-center pt-32 pb-16 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d]">
       <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div className="hero-text">
           <h1 className="font-serif font-semibold leading-[1.1] mb-8 text-[#0d0d0d] dark:text-[#f5f5f5]"
