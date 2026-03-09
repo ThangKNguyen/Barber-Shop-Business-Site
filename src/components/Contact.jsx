@@ -34,6 +34,7 @@ export default function Contact() {
             <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-3">Contact</p>
             <p className="text-base font-light text-[#2a2a2a] dark:text-[#a8a8a8] leading-loose">
               Phone:  +1 408-644-8210<br />
+              Instagram: @p__thebarber<br />
               Email: andywrd2003@gmail.com
             </p>
           </div>

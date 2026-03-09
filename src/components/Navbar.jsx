@@ -86,7 +86,7 @@ export default function Navbar({ theme, toggleTheme }) {
           menuOpen ? 'max-h-64' : 'max-h-0'
         }`}
       >
-        <ul className="flex flex-col px-[5%] py-4 gap-1 border-t border-black/10 dark:border-white/10 list-none">
+        <ul className="flex flex-col px-[5%] py-4 gap-1 list-none">
           {navItems.map((item) => (
             <li key={item}>
               <button
