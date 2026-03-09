@@ -6,7 +6,7 @@ import Services from './components/Services'
 import Features from './components/Features'
 import Gallery from './components/Gallery'
 import Reviews from './components/Reviews'
-import Instagram from './components/Instagram'
+import Socials from './components/Socials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -41,7 +41,7 @@ export default function App() {
         <Features />
         <Gallery />
         <Reviews />
-        <Instagram />
+        <Socials />
         <Contact />
       </main>
       <Footer />
