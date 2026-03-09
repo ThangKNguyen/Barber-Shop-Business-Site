@@ -25,9 +25,9 @@ const features = [
 
 export default function Features() {
   return (
-    <section aria-label="Why Choose Us" className="py-32 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d]">
+    <section aria-label="Why Choose Me" className="py-32 px-[5%] bg-[#f5f5f5] dark:bg-[#0d0d0d]">
       <div className="text-center reveal">
-        <p className="text-sm font-medium text-gold tracking-[0.2em] uppercase mb-4">Why Choose Us</p>
+        <p className="text-sm font-medium text-gold tracking-[0.2em] uppercase mb-4">Why Choose mE</p>
         <h2 className="font-serif font-semibold text-[#0d0d0d] dark:text-[#f5f5f5]"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
           Excellence in Detail

@@ -19,7 +19,7 @@ export default function Reviews() {
           What Clients Say
         </h2>
         <p className="text-base font-light text-[#2a2a2a] dark:text-[#a8a8a8]">
-          Don't take our word for it — here are satisfied customers
+          Don't take my word for it — here are satisfied customers
         </p>
       </div>
 

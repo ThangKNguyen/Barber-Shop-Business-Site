@@ -8,7 +8,7 @@ export default function Contact() {
         <div className="reveal-left text-center md:text-left">
           <h2 className="font-serif font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] mb-12"
             style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-            Visit Us
+            Info
           </h2>
 
           <div className="mb-10">
@@ -39,14 +39,14 @@ export default function Contact() {
           </div>
 
           <div className="border-t-2 md:border-t-0 md:border-l-2 border-gold pt-4 md:pt-0 md:pl-6 space-y-3 text-center md:text-left">
-            <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">Important Information</p>
+            <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">Reminder</p>
             {[
-              'Please message us for the address prior to your appointment.',
+              'Please message me for the address prior to your appointment.',
               'Feel free to head directly to the front door at your scheduled time.',
               'Please only book appointments you are certain you can attend on time.',
               'Arrive 5 minutes before your appointment time.',
               'Appointments for clients more than 10 minutes late will be cancelled and rescheduled.',
-              'If your preferred time is unavailable or you need an urgent appointment, message us directly — we will do our best to accommodate you.',
+              'If your preferred time is unavailable or you need an urgent appointment, message me directly — I will do my best to accommodate you.',
             ].map((note, i) => (
               <p key={i} className="text-sm font-light text-[#2a2a2a] dark:text-[#a8a8a8] leading-relaxed">
                 {note}

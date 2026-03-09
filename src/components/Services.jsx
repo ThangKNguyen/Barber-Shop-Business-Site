@@ -32,7 +32,7 @@ export default function Services() {
         <p className="text-sm font-medium text-gold tracking-[0.2em] uppercase mb-4">Services</p>
         <h2 className="font-serif font-semibold text-[#0d0d0d] dark:text-[#f5f5f5] mb-4"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          Our Offerings
+          My Offerings
         </h2>
         <p className="text-base font-light text-[#2a2a2a] dark:text-[#a8a8a8]">
           Premium grooming tailored to perfection
