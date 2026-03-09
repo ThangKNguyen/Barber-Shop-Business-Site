@@ -11,16 +11,39 @@ const videos = [work1, work2, work3, work4, work5, work6]
 function VideoCard({ src }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const [ended, setEnded] = useState(false)
+  const [showOverlay, setShowOverlay] = useState(true)
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(0)
   const [hovered, setHovered] = useState(false)
   const [showVolume, setShowVolume] = useState(false)
+  const overlayTimer = useRef(null)
+
+  const startOverlayTimer = () => {
+    if (overlayTimer.current) clearTimeout(overlayTimer.current)
+    setShowOverlay(true)
+    overlayTimer.current = setTimeout(() => setShowOverlay(false), 1000)
+  }
 
   const toggle = () => {
     const v = videoRef.current
     if (!v) return
-    if (playing) { v.pause(); setPlaying(false) }
-    else { v.play(); setPlaying(true) }
+    if (ended) {
+      v.currentTime = 0
+      v.play()
+      setPlaying(true)
+      setEnded(false)
+      startOverlayTimer()
+    } else if (playing) {
+      v.pause()
+      setPlaying(false)
+      if (overlayTimer.current) clearTimeout(overlayTimer.current)
+      setShowOverlay(true)
+    } else {
+      v.play()
+      setPlaying(true)
+      startOverlayTimer()
+    }
   }
 
   const onTimeUpdate = () => {
@@ -29,7 +52,11 @@ function VideoCard({ src }) {
     setProgress(v.currentTime / v.duration)
   }
 
-  const onEnded = () => setPlaying(false)
+  const onEnded = () => {
+    setPlaying(false)
+    setEnded(true)
+    setShowOverlay(true)
+  }
 
   const seek = (e) => {
     const v = videoRef.current
@@ -72,17 +99,16 @@ function VideoCard({ src }) {
         ref={videoRef}
         src={src}
         muted
-        loop
         playsInline
         onTimeUpdate={onTimeUpdate}
         onEnded={onEnded}
         className="w-full h-auto block"
       />
 
-      {/* play/pause overlay */}
+      {/* play/pause/loop overlay */}
       <div
         className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-          !playing ? 'opacity-100' : hovered ? 'opacity-100' : 'opacity-0'
+          showOverlay ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={toggle}
       >
@@ -91,6 +117,10 @@ function VideoCard({ src }) {
             <svg width="18" height="18" viewBox="0 0 18 18" fill="white">
               <rect x="3" y="2" width="4" height="14" rx="1"/>
               <rect x="11" y="2" width="4" height="14" rx="1"/>
+            </svg>
+          ) : ended ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
             </svg>
           ) : (
             <svg width="18" height="18" viewBox="0 0 18 18" fill="white">

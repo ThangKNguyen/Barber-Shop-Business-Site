@@ -47,7 +47,7 @@ export default function Services() {
             style={{ transitionDelay: `${i * 0.1}s` }}
           >
             <div className="h-full bg-white dark:bg-[#1f1f1f] p-10 border border-black/10 dark:border-white/10 hover:border-gold hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-              <div className="flex justify-between items-start mb-6 pb-6 border-b border-black/10 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 pb-6 border-b border-black/10 dark:border-white/10 gap-1 sm:gap-0">
                 <h3 className="text-xl font-semibold text-[#0d0d0d] dark:text-[#f5f5f5]">
                   {service.name}
                 </h3>
