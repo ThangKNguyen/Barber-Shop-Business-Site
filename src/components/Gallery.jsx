@@ -5,10 +5,23 @@ import work3 from '../visuals/work3.mp4'
 import work4 from '../visuals/work4.mp4'
 import work5 from '../visuals/work5.mp4'
 import work6 from '../visuals/work6.mp4'
+import poster1 from '../visuals/work1-poster.jpg'
+import poster2 from '../visuals/work2-poster.jpg'
+import poster3 from '../visuals/work3-poster.jpg'
+import poster4 from '../visuals/work4-poster.jpg'
+import poster5 from '../visuals/work5-poster.jpg'
+import poster6 from '../visuals/work6-poster.jpg'
 
-const videos = [work1, work2, work3, work4, work5, work6]
+const videos = [
+  { src: work1, poster: poster1 },
+  { src: work2, poster: poster2 },
+  { src: work3, poster: poster3 },
+  { src: work4, poster: poster4 },
+  { src: work5, poster: poster5 },
+  { src: work6, poster: poster6 },
+]
 
-function VideoCard({ src }) {
+function VideoCard({ src, poster }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [ended, setEnded] = useState(false)
@@ -98,8 +111,10 @@ function VideoCard({ src }) {
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         muted
         playsInline
+        preload="none"
         onTimeUpdate={onTimeUpdate}
         onEnded={onEnded}
         className="w-full h-auto block"
@@ -210,13 +225,13 @@ export default function Gallery() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
-        {videos.map((src, i) => (
+        {videos.map(({ src, poster }, i) => (
           <div
             key={i}
             className="reveal"
             style={{ transitionDelay: `${i * 0.1}s` }}
           >
-            <VideoCard src={src} />
+            <VideoCard src={src} poster={poster} />
           </div>
         ))}
       </div>
