@@ -35,6 +35,7 @@ export default function Reviews() {
                 src={src}
                 alt={`Customer review ${i + 1}`}
                 className="w-full h-auto block"
+                style={{ marginBottom: '-150px', clipPath: 'inset(0 0 100px 0)' }}
               />
             </div>
           </div>
