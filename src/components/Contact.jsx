@@ -56,7 +56,7 @@ export default function Contact() {
         </div>
 
         {/* Visit image — slides in from right */}
-        <div className="reveal-right">
+        <div className="reveal-right hidden lg:block">
           <div className="border-2 border-black/10 dark:border-white/10 overflow-hidden h-full">
             <img
               src={visitImg}
