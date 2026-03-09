@@ -12,10 +12,10 @@ const services = [
     desc: 'Regular haircut + Beard trim, beard fade/taper and beard lineup.',
   },
   {
-    name: "Men's Haircut + Beard",
-    price: '$50',
-    duration: '45 mins',
-    desc: 'Regular haircut + Beard trim, beard fade/taper and beard lineup.',
+    name: "Men's Haircut + Eyebrows",
+    price: '$45',
+    duration: '30 mins',
+    desc: 'Include men’s regular haircut plus eyebrows clean up/line up.',
   },
   {
     name: 'Long Scissor Haircut',
