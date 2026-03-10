@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Scissors } from 'lucide-react'
+import { GiComb } from 'react-icons/gi'
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
@@ -30,7 +31,11 @@ export default function Navbar({ theme, toggleTheme }) {
           onClick={() => scrollTo('hero')}
           className="font-serif text-[1.6rem] font-semibold tracking-wide bg-transparent border-none cursor-pointer text-[#0d0d0d] dark:text-[#f5f5f5]"
         >
-          P The Barber
+          <span className="flex items-center gap-2">
+            <Scissors size={16} strokeWidth={1.5} className="text-gold" />
+            P The Barber
+            <GiComb size={16} />
+          </span>
         </button>
 
         {/* Desktop links */}

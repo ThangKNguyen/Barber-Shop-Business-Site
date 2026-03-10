@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(do:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && node -e \"const lucide = require\\('lucide-react'\\); console.log\\(Object.keys\\(lucide\\).filter\\(k => k.toLowerCase\\(\\).includes\\('comb'\\)\\)\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && node -e \"require\\('react-icons/fa'\\); console.log\\('found'\\)\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && npm install react-icons)",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && node -e \"const fa = require\\('react-icons/fa'\\); console.log\\(Object.keys\\(fa\\).filter\\(k => k.toLowerCase\\(\\).includes\\('comb'\\)\\)\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && node -e \"const fa6 = require\\('react-icons/fa6'\\); console.log\\(Object.keys\\(fa6\\).filter\\(k => k.toLowerCase\\(\\).includes\\('comb'\\)\\)\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\thang\\\\OneDrive\\\\Desktop\\\\Pthebarber\" && node -e \"\nconst libs = ['fa', 'fa6', 'gi', 'md', 'tb', 'pi'];\nfor \\(const lib of libs\\) {\n  try {\n    const m = require\\('react-icons/' + lib\\);\n    const matches = Object.keys\\(m\\).filter\\(k => k.toLowerCase\\(\\).includes\\('comb'\\) || k.toLowerCase\\(\\).includes\\('scissors'\\) || k.toLowerCase\\(\\).includes\\('barber'\\)\\);\n    if \\(matches.length\\) console.log\\(lib + ':', matches\\);\n  } catch\\(e\\) {}\n}\")"
     ]
   }
 }

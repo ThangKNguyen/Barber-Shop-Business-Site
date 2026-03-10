@@ -1,3 +1,6 @@
+import { Scissors } from 'lucide-react'
+import { GiComb } from 'react-icons/gi'
+
 export default function Footer() {
   const scrollTo = (id) => {
     const el = document.getElementById(id)
@@ -9,8 +12,10 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-16 mb-12">
         {/* Brand */}
         <div className="text-center md:text-left">
-          <h3 className="font-serif text-[1.6rem] text-[#0d0d0d] dark:text-[#f5f5f5] mb-6">
+          <h3 className="font-serif text-[1.6rem] text-[#0d0d0d] dark:text-[#f5f5f5] mb-6 flex items-center gap-2 justify-center md:justify-start">
+            <Scissors size={16} strokeWidth={1.5} className="text-gold" />
             P The Barber
+            <GiComb size={16} />
           </h3>
           <p className="font-light text-[#2a2a2a] dark:text-[#a8a8a8] leading-loose">
             Quality grooming with precision and attention to detail. <br/>
